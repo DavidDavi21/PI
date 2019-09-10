@@ -14,29 +14,30 @@ class Usuario(BaseModel):
     emailU = CharField()
     senha = CharField()
 
-class Votacao(BaseModel):
+class Eleicao(BaseModel):
     titulo = CharField()
     criador = ForeignKeyField(Usuario)
     estiloVotacao = CharField()
+    codEleicao = CharField()
 
 class Candidato(BaseModel):
     nomeC = CharField()
     foto = BigBitField(null=False)
     descricao = CharField()
-    votacao = ForeignKeyField(Votacao)
+    eleicao = ForeignKeyField(Eleicao)
 
 if __name__ == '__main__':
     if os.path.exists(arq):
         os.remove(arq)
     db.connect()
-    db.create_tables([Usuario, Candidato, Votacao])
-    usu = Usuario(nomeU="Alguém", cpf="11111111111", emailU="alguem@gmail.com", senha="111111a")
-    vota = Votacao(titulo="Qual a melhor batata?", criador=usu, estiloVotacao="rapida")
-    fulano = Candidato(nomeC="Fulano de Tal", descricao="Top", votacao=vota)
-    usu.save()
-    vota.save()
-    fulano.save()
-    usu = Candidato.select()
-    for i in usu:
-        print(i.votacao.titulo)
+    db.create_tables([Usuario, Candidato, Eleicao])
+    # usu = Usuario(nomeU="Alguém", cpf="11111111111", emailU="alguem@gmail.com", senha="111111a")
+    # vota = Votacao(titulo="Qual a melhor batata?", criador=usu, estiloVotacao="rapida")
+    # fulano = Candidato(nomeC="Fulano de Tal", descricao="Top", votacao=vota)
+    # usu.save()
+    # vota.save()
+    # fulano.save()
+    # usu = Candidato.select()
+    # for i in usu:
+    #     print(i.votacao.titulo)
     

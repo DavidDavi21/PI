@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request, url_for, session, redirect
-from classe import *
+# from classe import *
 from bdballot import *
 
 app = Flask("__name__")
 
 app.config["SECRET_KEY"] = 'admin'
+
+listaUE = []
+listaUS = []
 
 @app.route("/")
 def home():
@@ -37,7 +40,17 @@ def form_cadastrar():
 
 @app.route("/cadastrar", methods=['post'])
 def cadastrar():
-    pass
+    nomeUsu = request.form["nome"]
+    cpf = request.form["cpf"]
+    emailUsu = request.form["email"]
+    senhaUsu = request.form["senha"]
+    print(nomeUsu, cpf, emailUsu, senhaUsu)
+    usu = Usuario(nomeU = nomeUsu, cpf = cpf, emailU = emailUsu, senha = senhaUsu)
+    usu.save()
+    dado = Usuario.select()
+    for i in dado:
+        print(i.nomeU)
+    return redirect("/")
 
 @app.route("/form_login")
 def form_login():
@@ -47,8 +60,12 @@ def form_login():
 def login():
     email = request.form["email"]
     senha = request.form["senha"]
+    dado = Usuario.select()
+    for i in dado:
+        listaUE.append(i.emailU)
+        listaUS.append(i.senha)
 
-    if email == "bla@gmail.com" and senha == "admin":
+    if email in listaUE and senha in listaUS:
         session['usuario'] = email
         
         return render_template("index.html")
@@ -65,4 +82,7 @@ def soma():
     session['ncandidatos'] += 2
     return redirect("/atualizar_form_criar_votacao")
 
+@app.route("/sair")
+def sair():
+    return redirect("/")
 app.run(debug=True, port=7500, host="0.0.0.0")
