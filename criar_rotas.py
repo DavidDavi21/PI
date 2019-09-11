@@ -43,10 +43,11 @@ def cadastrar():
     nomeUsu = request.form["nome"]
     cpf = request.form["cpf"]
     emailUsu = request.form["email"]
+    emailUsu = emailUsu.upper()
     senhaUsu = request.form["senha"]
     print(nomeUsu, cpf, emailUsu, senhaUsu)
-    usu = Usuario(nomeU = nomeUsu, cpf = cpf, emailU = emailUsu, senha = senhaUsu)
-    usu.save()
+    usu = Usuario.create(nomeU = nomeUsu, cpf = cpf, emailU = emailUsu, senha = senhaUsu)
+    #usu.save()
     dado = Usuario.select()
     for i in dado:
         print(i.nomeU)
@@ -58,7 +59,7 @@ def form_login():
 
 @app.route("/login", methods=['post'])
 def login():
-    email = request.form["email"]
+    email = request.form["email"].upper()
     senha = request.form["senha"]
     dado = Usuario.select()
     for i in dado:
