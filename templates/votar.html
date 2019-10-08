@@ -21,9 +21,14 @@
 <body>
     <ul id="menu">
 	    <a href="/"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a>
-        <li class="intro" ><a class="intro" href="/ver_ranking" target="_blank">Ranking</a></li>
-        <li class="intro" ><a class="intro" href="/form_criar_votacao" target="_blank">Criar Votação</a></li>
-        <li class="intro" ><a class="intro" href="/form_cadastrar" target="_blank">Efetuar Cadastro</a></li>
+        <li class="intro" ><a class="intro" href="/ver_ranking">Ranking</a></li>
+        <li class="intro" ><a class="intro" href="/form_criar_votacao">Criar Votação</a></li>
+
+        {%if usuario == True%}
+            <p></p>
+        {%else%}
+            <li class="intro" ><a class="intro" href="/form_cadastrar">Efetuar Cadastro</a></li>
+        {%endif%}
 
     </ul>   
     <br>
@@ -36,7 +41,7 @@
     <br>
     <br>
     <div>
-    <form>
+    <form action="/pagina_votacao" method="post">
         <label for="codV" method="post">Código da votação:</label>
         <input id="codV" type="text" placeholder="A0A0A0P">
         <input type="submit" value="Acessar votação">

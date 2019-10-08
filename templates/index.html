@@ -7,7 +7,7 @@
     <style>
         #menu {       
             list-style-type: none;
-            margin: 0;      
+            margin: 0;     
             padding: 0.5%;      
             overflow: hidden;
             background-color: #87CEEB;
@@ -51,11 +51,15 @@
 <body>
     <img src= "static/imagem/iconvote.png" style="width:20%; height: 20%; margin: 5%;">
     <ul id="menu">  
-        <li class="intro" ><a class="intro" href="/ver_ranking" target="_blank">Ranking</a></li>                 
-        <li class="intro" ><a class="intro" href="/votar" target="_blank">Votar</a></li>
-        <li class="intro" ><a class="intro" href="/form_criar_votacao" target="_blank">Criar Votação</a></li>
-        <li class="intro" ><a class="intro" href="/form_cadastrar" target="_blank">Efetuar Cadastro</a></li>
-        <li class="intro" ><a class="intro" href="/form_login" target="_blank">Efetuar Login</a></li>
+        <li class="intro" ><a class="intro" href="/ver_ranking">Ranking</a></li>                 
+        <li class="intro" ><a class="intro" href="/votar">Votar</a></li>
+        <li class="intro" ><a class="intro" href="/form_criar_votacao">Criar Votação</a></li>
+        {%if usuario == False%}
+            <li class="intro" ><a class="intro" href="/form_cadastrar">Efetuar Cadastro</a></li>
+            <li class="intro" ><a class="intro" href="/form_login">Efetuar Login</a></li>
+        {%else%}
+            <p>deu tudo certo</p>
+        {%endif%}
 
     </ul>   
     <br>
