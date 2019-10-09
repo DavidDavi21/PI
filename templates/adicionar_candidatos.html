@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Ballot - Criar Votação</title>
+    <meta charset="uft-8">
+    <link rel="icon" href="static/imagem/iconvote1.png" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="static/ballot.css">
+    <style>
+        #menu {       
+            list-style-type: none;
+            margin: 0;      
+            padding: 0.5%;      
+            overflow: hidden;
+            float: left;
+            background-color:#87CEEB;
+            width: 99%;
+        }
+        #Bsalvar{
+            background-color: rgb(135, 235, 148);
+        
+        }
+        #Bsalvar:hover{
+            background-color: rgb(135, 255, 30);
+        }
+        #Breiniciar{
+            background-color: rgb(235, 135, 135);
+        }
+        #Breiniciar:hover{
+            background-color: rgb(235, 30, 30);
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="menu">  
+        <a href="/voltar"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a>
+        <li class="intro" ><a class="intro" href="/ver_ranking" >Ranking</a></li>                 
+        <li class="intro" ><a class="intro" href="/votar" >Votar</a></li>
+        <li class="intro" ><a class="intro" href="/form_criar_votacao" >Criar Votação</a></li>
+    </ul>  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Adicionar candidatos</h1>
+    <br>
+    <br>
+    {%for i in range(ncandidatos):%}
+        <hr>
+        <br>
+        <br>
+        <form>
+            <label for="candum">Candidato {{i + 1}}:</label>
+            <input type="text" id="candum" name="cand{{i+1}}" placeholder="Batata frita" required>
+	        <br>
+            <br>
+            <label for="candum"> Foto Candidato {{i + 1}}:</label>
+            <input type="file" name="fotocandidato{{i+1}}" required>
+            <br>
+            <br>
+            <br>
+            <label for="candum"> Descrição Candidato {{i + 1}}:</label>
+            <textarea rows="4" cols="35" name=descricao{{i+1}} required> Comente aqui algo sobre o candidato </textarea>
+            <br>
+            <br>
+            <br>
+            <br>
+            {%endfor%}
+            <input id="Bsalvar" type="submit" value="Salvar candidatos">
+        </form> 
+        <form action="/soma">
+            <input type="submit" value="Adicionar Candidato">
+        </form>
+        <form action="/resetar">
+            <input id="Breiniciar" type="submit" value="Reiniciar o número de candidatos">
+        </form>
+</body>
+</html>

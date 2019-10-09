@@ -31,13 +31,5 @@ if __name__ == '__main__':
         os.remove(arq)
     db.connect()
     db.create_tables([Usuario, Candidato, Eleicao])
-    # usu = Usuario(nomeU="Alguém", cpf="11111111111", emailU="alguem@gmail.com", senha="111111a")
-    # vota = Votacao(titulo="Qual a melhor batata?", criador=usu, estiloVotacao="rapida")
-    # fulano = Candidato(nomeC="Fulano de Tal", descricao="Top", votacao=vota)
-    # usu.save()
-    # vota.save()
-    # fulano.save()
-    # usu = Candidato.select()
-    # for i in usu:
-    #     print(i.votacao.titulo)
+ 
     

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Ballot - Criar Votação</title>
+    <meta charset="uft-8">
+    <link rel="icon" href="static/imagem/iconvote1.png" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="static/ballot.css">
+    <style>
+        #menu {       
+            list-style-type: none;
+            margin: 0;      
+            padding: 0.5%;      
+            overflow: hidden;
+            float: left;
+            background-color: #87CEEB;
+            width: 99%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="menu">  
+        <a href="/voltar"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a>
+        <li class="intro" ><a class="intro" href="/ver_ranking" >Ranking</a></li>                 
+        <li class="intro" ><a class="intro" href="/votar" >Votar</a></li>
+        <li class="intro" ><a class="intro" href="/form_criar_votacao" >Criar Votação</a></li>
+    </ul>  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Nome da Eleição</h1>
+    <br>
+    <br>
+    <form action="/form_add_candidato">
+        <input type="submit" value="Adicionar candidatos">
+    </form>
+    <br>
+    <br>
+    <br>
+    <p style="text-align: center; font-size: 85%; ">Copyright 2019. All Rights Reserved. Powered by Ballot.</p>
+</body>
+</html>

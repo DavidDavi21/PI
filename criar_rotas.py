@@ -15,16 +15,20 @@ def home():
 
 @app.route("/form_criar_votacao")
 def form_criar_votacao():
-    session['ncandidatos'] = 2  
-    return render_template("criar_votacao.html", ncandidatos = session['ncandidatos'])
+    return render_template("criar_votacao.html")
 
-@app.route("/atualizar_form_criar_votacao")
+@app.route("/atualizar_form_add_candidato")
 def atualizar_form_criar_votacao():
-    return render_template("criar_votacao.html", ncandidatos = session['ncandidatos'])
+    return render_template("adicionar_candidatos.html", ncandidatos = session['ncandidatos'])
 
 @app.route("/criar_votacao", methods=['post'])
 def criar_votacao():
-    pass
+    return render_template("eleicao.html")
+
+@app.route("/form_add_candidato")
+def add_candidato():
+    session['ncandidatos'] = 2 
+    return render_template("adicionar_candidatos.html", ncandidatos = session['ncandidatos'])
 
 @app.route("/votar")
 def votar():
@@ -47,7 +51,6 @@ def cadastrar():
     senhaUsu = request.form["senha"]
     print(nomeUsu, cpf, emailUsu, senhaUsu)
     usu = Usuario.create(nomeU = nomeUsu, cpf = cpf, emailU = emailUsu, senha = senhaUsu)
-    #usu.save()
     dado = Usuario.select()
     for i in dado:
         print(i.nomeU)
@@ -80,10 +83,16 @@ def logout():
 
 @app.route("/soma")
 def soma():
-    session['ncandidatos'] += 2
-    return redirect("/atualizar_form_criar_votacao")
+    session['ncandidatos'] += 1
+    return redirect("/atualizar_form_add_candidato")
 
-@app.route("/sair")
-def sair():
-    return redirect("/")
+@app.route("/resetar")
+def resetar():
+    session['ncandidatos'] = 2
+    return redirect("/atualizar_form_add_candidato")
+
+@app.route("/voltar")
+def voltar():
+    return render_template("index.html")
+
 app.run(debug=True, port=7500, host="0.0.0.0")

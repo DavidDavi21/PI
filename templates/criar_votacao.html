@@ -20,7 +20,7 @@
 
 <body>
     <ul id="menu">  
-        <a href="/"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a>
+        <a href="/voltar"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a>
         <li class="intro" ><a class="intro" href="/ver_ranking" >Ranking</a></li>                 
         <li class="intro" ><a class="intro" href="/votar" >Votar</a></li>
         <li class="intro" ><a class="intro" href="/form_cadastrar" >Efetuar Cadastro</a></li>
@@ -40,7 +40,14 @@
             <input type="text" id="titulo" name="titulo" placeholder="Batata">
             <br>
             <br>
-
+            <label> Estilo de Votação:</label>
+            <br>
+            <br>
+            <input type="radio" name="vote" value="priv"> Privada (apenas quem possuir a senha pode votar)<br>
+            <input type="radio" name="vote" value="publ"> Pública (qualquer um pode votar)<br>
+            <br>
+            <input type="submit" value="Criar Votação">
+            </form>              
             <!-- <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" placeholder="Fulana(o)">
             <br>
@@ -50,39 +57,6 @@
             <input type="text" id="email" name="email" placeholder="fulan@gamil.com">
             <br>
             <br> -->
-            {%for i in range(ncandidatos):%}
-            <label for="candum">Candidato {{i + 1}}:</label>
-            <input type="text" id="candum" name="cand{{i+1}}" placeholder="Batata frita">
-	        <br>
-            <br>
-            
-
-            <label for="candum"> Foto Candidato {{i + 1}}:</label>
-            <input type="file" name=fotocandidato{{i+1}}>
-            <br>
-            <br>
-            <br>
-            
-            <label for="candum"> Descrição Candidato {{i + 1}}:</label>
-            <textarea rows="4" cols="35" name=descricao{{i+1}}> Comente aqui algo sobre o candidato </textarea>
-            <br>
-            <br>
-            <br>
-            {%endfor%}
-        </form>
-        <form action="/soma">
-            <input type="submit" value="Adicionar Candidato">
-        </form>
-        <form action="">
-	    <label> Estilo de Votação:</label>
-	    <br>
-	    <br>
-	    <input type="radio" name="vote" value="priv"> Privada (apenas quem possuir a senha pode votar)<br>
-	    <input type="radio" name="vote" value="publ"> Pública (qualquer um pode votar)<br>
-        </form>              
-            <br>
-            <input type="submit" value="Criar Votação">
-    
         <p style="text-align: center; font-size: 85%; ">Copyright 2019. All Rights Reserved. Powered by Ballot.</p>
     </div>
     
