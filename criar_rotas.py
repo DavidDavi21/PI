@@ -6,7 +6,9 @@ from random import randint
 app = Flask("__name__")
 app.config["SECRET_KEY"] = 'admin'
 sessao = False
-votacao = Votacao.select()
+lista_votacoes = Votacao.select()
+lista_usuarios = Usuario.select()
+lista_candidatos = Candidato.select()
 
 @app.route("/")
 def home():
@@ -52,11 +54,13 @@ def form_cadastrar():
 
 @app.route("/cadastrar", methods=['post'])
 def cadastrar():
-    nome = request.form['nome']
+    nomeU = request.form['nome']
     cpf = request.form['cpf']
-    email = request.form['email']
+    emailU = request.form['email']
     senha = request.form['senha']
-    return redirect("/")
+    Usuario.create(nomeU=nomeU, cpf=cpf, emailU=emailU, senha=senha)
+    #Colocar alert informando que foi bem sucedido! E o verificador se os campos estiverem preenchidos!
+    return redirect("/form_login")
 
 @app.route("/form_login")
 def form_login():
@@ -65,19 +69,29 @@ def form_login():
 @app.route("/login", methods=['post'])
 def login():
     global sessao
-    email = request.form["email"]
-    senha = request.form["senha"]
+    emailU = ',1'
+    senhadigitada = request.form['senha']
+    emailUdigitado = request.form['email']
 
-    if email == "bla@gmail.com" and senha == "admin":
-        session['usuario'] = email
+    for procura in lista_usuarios:
+        if emailUdigitado == procura.emailU:
+            emailU = procura.emailU
+            senha = procura.senha
+    
+    if emailUdigitado == emailU and senha == senhadigitada:
+        sessao_total = (emailU, senha)
+        session['usuario'] = sessao_total
         sessao = True
-        
         return render_template("index.html")
     else:
-        return "erro no login, tente novamente"
+        #Colocar alert e voltar pra tela de login
+        #Ainda tem erros com mais de  1 cadastro
+        return redirect("/form_login")
 
 @app.route("/logout")
 def logout():
+    global sessao
+    sessao = False
     session.pop("usuario")
     return redirect("/")
 
