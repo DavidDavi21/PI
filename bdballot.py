@@ -32,5 +32,3 @@ if __name__ == '__main__':
         os.remove(arq)
     db.connect()
     db.create_tables([Usuario, Candidato, Votacao])
-    usu = Usuario(nomeU='José', cpf='123', emailU='@gmail.com', senha='12345')
-    usu.save()
