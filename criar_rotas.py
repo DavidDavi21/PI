@@ -146,11 +146,16 @@ def gerarSenha():
 @app.route("/pagina_votacao", methods=['POST'])
 def paginaVotacao():
     codV = request.form["codV"]
-    for i in lista_votacoes:
-        if codV == lista_votacoes.codigo_votacao:
-            return redirect("/")
-        else:
-            return 'Algo deu errado!'
+    try:
+        for i in lista_votacoes:
+            if codV == lista_votacoes.codigo_votacao:
+                return redirect("/")
+            else:
+                return 'Algo deu errado!'
+    except:
+        return "alert('O codigo nao existe')" 
+    return "<script>alert('Algo Errado')</script>\
+            <a href='/votar'>Voltar</a>"  
 
 @app.route("/voltar")
 def voltar():

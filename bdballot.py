@@ -28,7 +28,7 @@ class Candidato(BaseModel):
     quantidade_votos = IntegerField()
 
 if __name__ == '__main__':
-    if os.path.exists(arq):
-        os.remove(arq)
+    # if os.path.exists(arq):
+    #     os.remove(arq)
     db.connect()
     db.create_tables([Usuario, Candidato, Votacao])
