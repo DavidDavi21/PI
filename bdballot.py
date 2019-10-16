@@ -1,42 +1,27 @@
+#aqui, são importadas algumas bibliotecas do peewee 
 from peewee import CharField, FloatField, IntegerField, BigBitField, ForeignKeyField, SqliteDatabase, Model
-import os
+import os #importa o os, usado para remover o arquivo de banco de dados caso ele já exista
 
-arq = "ballot.db"
-db = SqliteDatabase(arq)
+arq = "ballot.db" #define o nome do arquivo bd a uma variável
+db = SqliteDatabase(arq) #define que o banco vai ser SQLite e qual vai ser o nome do arquivo
 
-class BaseModel(Model):
-    class Meta:
-        database = db
+class BaseModel(Model): #uma classe que será importada para todas terem acesso ao bd; #Model já existe dentro do próprio peewee
+    class Meta: #classe padrão
+        database = db #define que o database(banco de dados) é o db
 
-class Usuario(BaseModel):
-    nomeU = CharField()
-    cpf = CharField()
-    emailU = CharField()
-    senha = CharField()
+class Usuario(BaseModel): #define a classe Usuario
+    nomeU = CharField() #cria a variável nome do tipo CharField( formato usado para palavras )
+    cpf = CharField() #cria a variável cpf do tipo CharField( usa-se esse tipo pois no cpf tem pontos e hífen )
+    emailU = CharField() #variável email
+    senha = CharField() #variável senha
 
-class Votacao(BaseModel):
+class Votacao(BaseModel): #define a classe votação
     titulo = CharField()
-    criador = ForeignKeyField(Usuario)
+    criador = ForeignKeyField(Usuario) #define uma relação entre as classe Votacao e Usuario, o criador vai ser o usuário que criou a votação
     estiloVotacao = CharField()
 
-class Candidato(BaseModel):
+class Candidato(BaseModel): #define a classe Candidato 
     nomeC = CharField()
-    foto = BigBitField(null=False)
+    foto = BigBitField(null=False) 
     descricao = CharField()
-    votacao = ForeignKeyField(Votacao)
-
-if __name__ == '__main__':
-    if os.path.exists(arq):
-        os.remove(arq)
-    db.connect()
-    db.create_tables([Usuario, Candidato, Votacao])
-    usu = Usuario(nomeU="Alguém", cpf="11111111111", emailU="alguem@gmail.com", senha="111111a")
-    vota = Votacao(titulo="Qual a melhor batata?", criador=usu, estiloVotacao="rapida")
-    fulano = Candidato(nomeC="Fulano de Tal", descricao="Top", votacao=vota)
-    usu.save()
-    vota.save()
-    fulano.save()
-    usu = Candidato.select()
-    for i in usu:
-        print(i.votacao.titulo)
-    
+    votacao = ForeignKeyField(Votacao) #relação entre classes    

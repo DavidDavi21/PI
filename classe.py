@@ -1,4 +1,4 @@
-class Usuario():
+class Usuario(): #declara classe usuario
 
     def __init__(self, nome, cpf, email, senha):
         self.nome  = nome
