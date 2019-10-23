@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <title>Ballot - Criar Votação</title>
-    <meta charset="uft-8">
-    <link rel="icon" href="static/imagem/iconvote1.png" type="image/png" />
-    <link rel="stylesheet" type="text/css" href="static/ballot.css">
-    <style>
+<!DOCTYPE html> <!--tag padrão-->
+<html lang="pt-br"> <!-- abertura da tag html, definindo a lingua como português do Brasil -->
+<head> <--! abertura do head-->
+    <title>Ballot - Criar Votação</title> <!-- título da página -->
+    <meta charset="uft-8"> <!-- tag para reconhecer os acentos -->
+    <link rel="icon" href="static/imagem/iconvote1.png" type="image/png" /> <!-- define imagem para ícone das abas de navegação -->
+    <link rel="stylesheet" type="text/css" href="static/ballot.css"> <!-- define o css, conecta com a página -->
+    <!-- início do css interno -->
+    <style> 
         #menu {       
             list-style-type: none;
             margin: 0;      
@@ -28,31 +29,31 @@
         #Breiniciar:hover{
             background-color: rgb(235, 30, 30);
         }
-    </style>
-</head>
+    </style> <!-- fim do css interno -->
+</head> <!-- fim do head -->
 
-<body>
-    <ul id="menu">  
-        <a href="/voltar"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a>
-        <li class="intro" ><a class="intro" href="/ver_ranking" >Ranking</a></li>                 
+<body> <!-- início do body -->
+    <ul id="menu"> <!-- início da lista não ordenada -->
+        <a href="/voltar"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a> <!-- link para a página inicial -->
+        <li class="intro" ><a class="intro" href="/ver_ranking" >Ranking</a></li> <!-- item da lista com um link dentro -->                
         <li class="intro" ><a class="intro" href="/votar" >Votar</a></li>
         <li class="intro" ><a class="intro" href="/form_criar_votacao" >Criar Votação</a></li>
-    </ul>  
+    </ul> <!-- fim da lista não ordenada --> 
+    <br> <!-- espaço -->
     <br>
     <br>
     <br>
     <br>
     <br>
+    <h1>Adicionar candidatos</h1> <!-- Título da página -->
     <br>
-    <h1>Adicionar candidatos</h1>
     <br>
-    <br>
-    {%for i in range(ncandidatos):%}
-        <hr>
+    {%for i in range(ncandidatos):%} <!-- início do laço de repetição -->
+        <hr> <!-- risco que separa blocos-->
         <br>
         <br>
-        <form action="/salvar_candidatos">
-            <label for="candum">Candidato {{i + 1}}:</label>
+        <form action="/salvar_candidatos"> <!-- início do formulário, que irá direcionar as informações obtidas para a rota salvar_candidatos-->
+            <label for="candum">Candidato {{i + 1}}:</label> <!--  -->
             <input type="text" id="candum" name="cand{{i+1}}" placeholder="Batata frita" required>
 	        <br>
             <br>
