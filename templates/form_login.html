@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <title>Ballot - Login</title>
-    <meta charset="uft-8">
-    <link rel="icon" href="/static/imagem/iconvote1.png" type="image/png" />
-    <link rel="stylesheet" type="text/css" href="static/ballot.css">
+<!DOCTYPE html><!--tag padrão-->
+<html lang="pt-br"><!-- abertura da tag html, definindo a lingua como português do Brasil -->
+<head><!-- abertura do head-->
+    <title>Ballot - Login</title><!-- título da página -->
+    <meta charset="uft-8"><!-- tag para reconhecer os acentos -->
+    <link rel="icon" href="/static/imagem/iconvote1.png" type="image/png" /><!-- define imagem para ícone das abas de navegação -->
+    <link rel="stylesheet" type="text/css" href="static/ballot.css"><!-- define o css, conecta com a página -->
+    <!-- início do css interno -->
     <style>
         #menu {       
             list-style-type: none;
@@ -15,29 +16,29 @@
             background-color: #87CEEB;
             width: 99%;
         }
-    </style>
-</head>
-<body>
-    <ul id="menu">
-	<a href="/"><img src= "static/imagem/iconvote1.png" style="width:60px; height: 60px; float: left;"></a>
-        <li class="intro" ><a class="intro" href="/ver_ranking">Ranking</a></li> 
+    </style><!-- fim do css interno -->
+</head> <!-- fim do head -->
+<body><!-- início do body -->
+    <ul id="menu"><!-- início da lista não ordenada -->
+	<a href="/"><img src= "static/imagem/iconvote1.png" style="width:60px; height: 60px; float: left;"></a><!-- link para a página inicial -->
+        <li class="intro" ><a class="intro" href="/ver_ranking">Ranking</a></li> <!-- item da lista com um link dentro -->
         <li class="intro" ><a class="intro" href="/votar">Votar</a></li>                
         <li class="intro" ><a class="intro" href="/form_criar_votacao">Criar Votação</a></li>
 
-    </ul>   
-    <br>
+    </ul>  <!-- fim da lista não ordenada --> 
+    <br> <!-- espaço -->
     <br>
     <br>
     <br>
     <br> 
-    <h1>FAÇA SEU LOGIN!</h1>
+    <h1>FAÇA SEU LOGIN!</h1><!-- Título da página -->
     <br>
     <br>
     <br>
-    <div>  
-        <form action="/login" method="post">
-            <label for="email">E-mail:</label>
-            <input type="text" id="email" name="email" placeholder="fulan@gmail.com">
+    <div> <!-- início da div -->
+        <form action="/login" method="post"><!-- início do formulário que irá direcionar os dados para a rota que realizará a ação de logar-->
+            <label for="email">E-mail:</label><!-- aparece 'e-mail' no form -->
+            <input type="text" id="email" name="email" placeholder="fulan@gmail.com"><!-- caixa de texto para inserir o e-mail -->
             <br>
             <br>
             <label for="senha">Senha:</label>
@@ -46,15 +47,15 @@
             <br>
                     
         <br>
-        <input type="submit" value="Login">
+        <input type="submit" value="Login"><!-- botão que encerra a operação e permite que os dados sejam mandados para o valor de 'action' -->
         <br>
-    </form>  
-        <br>
-        <br>
+    </form> <!-- fim do formulário -->
         <br>
         <br>
-        <div><p style="text-align: center; font-size: 85%; ">Copyright 2019. All Rights Reserved. Powered by Ballot.</p></div>
+        <br>
+        <br>
+        <div><p style="text-align: center; font-size: 85%; ">Copyright 2019. All Rights Reserved. Powered by Ballot.</p><!-- parágrafo --></div>
 
     
-</body>
-</html>
+</body><!-- fim do body -->
+</html><!-- fim do html -->

@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <title>Ballot - Votar</title>
-    <meta charset="uft-8">
-    <link rel="icon" href="/static/imagem/iconvote1.png" type="image/png" />
-    <link rel="stylesheet" type="text/css" href="static/ballot.css">
+<!DOCTYPE html><!--tag padrão-->
+<html lang="pt-br"><!-- abertura da tag html, definindo a lingua como português do Brasil -->
+<head><!-- abertura do head-->
+    <title>Ballot - Votar</title><!-- título da página -->
+    <meta charset="uft-8"><!-- tag para reconhecer os acentos -->
+    <link rel="icon" href="/static/imagem/iconvote1.png" type="image/png" /><!-- define imagem para ícone das abas de navegação -->
+    <link rel="stylesheet" type="text/css" href="static/ballot.css"><!-- define o css, conecta com a página -->
+    <!-- início do css interno -->
     <style>
     
     #menu {       
@@ -16,28 +17,28 @@
         background-color: #87CEEB;
         width: 99%;
     }
-    </style>
-</head>
-<body>
-    <ul id="menu">
-	    <a href="/"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a>
-        <li class="intro" ><a class="intro" href="/ver_ranking">Ranking</a></li>
+    </style><!-- fim do css interno -->
+</head> <!-- fim do head -->
+<body><!-- início do body -->
+    <ul id="menu"><!-- início da lista não ordenada -->
+	    <a href="/"><img src= "static/imagem/iconvote1.png" style="width: 60px; height: 60px; float: left;"></a><!-- link para a página inicial -->
+        <li class="intro" ><a class="intro" href="/ver_ranking">Ranking</a></li><!-- item da lista com um link dentro -->
         <li class="intro" ><a class="intro" href="/form_criar_votacao">Criar Votação</a></li>
 
-        {%if usuario == True%}
+        {%if usuario %}<!--início do if, entra aqui se o user estiver logado-->
             <p></p>
-        {%else%}
+        {%else%}<!--entra aqui se não estiver logado-->
             <li class="intro" ><a class="intro" href="/form_cadastrar">Efetuar Cadastro</a></li>
-        {%endif%}
+        {%endif%}<!--fim do if-->
 
-    </ul>   
+    </ul> <!-- fim da lista não ordenada --> 
+    <br> <!-- espaço -->
     <br>
     <br>
     <br>
     <br>
     <br>
-    <br>
-    <h1>VOTE</h1>
+    <h1>VOTE</h1><!--título da página-->
     <br>
     <br>
     <div>
