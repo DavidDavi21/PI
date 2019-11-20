@@ -6,9 +6,8 @@ from random import randint
 app = Flask("__name__")
 app.config["SECRET_KEY"] = 'admin'
 sessao = False
-senha_correta = ''
+senha_correta = ""
 lista_votacoes = Votacao.select()
-lista_usuarios = Usuario.select()
 lista_candidatos = Candidato.select()
 
 @app.route("/")
@@ -17,7 +16,7 @@ def home():
     if sessao == True:
         return render_template("index.html", usuario=sessao)
     else:
-        return render_template("index1.html")
+        return render_template("index.html", usuario=sessao)
 
 @app.route("/form_criar_votacao")
 def form_criar_votacao():
@@ -34,27 +33,19 @@ def atualizar_form_criar_votacao():
 
 @app.route("/criar_votacao", methods=['post'])
 def criar_votacao():
-    global lista_usuarios
     global senha_correta
+    lista_usuarios = Usuario.select()
     titulo = request.form['titulo']
     estiloVotacao = request.form['vote']
-    if senha_correta != '':
-
-        for i in lista_usuarios:
-            if session['usuario'][0] == i.nomeU:
-                nomeU = i.nomeU
-                cpf = i.cpf
-                emailU = i.emailU
-                criador = Usuario(nomeU, cpf, emailU)
-        Votacao.create(titulo=titulo, criador=criador, estiloVotacao=estiloVotacao, codigo_votacao=senha_correta)
-        return render_template("eleicao.html")
-
-    elif estiloVotacao == "publ":
+    if estiloVotacao == "publ":
         senha_correta = 'u'
-
-    else:
-        estilo = ''
-    return redirect("/gerar_senha", estiloVotacao)
+    elif estiloVotacao == "priv":
+        gerarSenha()
+    for i in lista_usuarios:
+        if session['usuario'][0] == i.nomeU:
+            idCriador = i.id
+            Votacao.create(titulo=titulo, criador=idCriador, estiloVotacao=estiloVotacao, codigo_votacao=senha_correta)
+    return render_template("eleicao.html", titulo=titulo)
 
 @app.route("/resetar")
 def resetar():
@@ -95,8 +86,8 @@ def form_login():
 
 @app.route("/login", methods=['post'])
 def login():
-    global lista_usuarios
     global sessao
+    lista_usuarios = Usuario.select()
     emailU = ',1'
     senhadigitada = request.form['senha']
     emailUdigitado = request.form['email']
@@ -120,7 +111,7 @@ def login():
 def logout():
     global sessao
     sessao = False
-    session.pop("usuario")
+    session.pop('usuario')
     return redirect("/")
 
 @app.route("/soma")
@@ -128,7 +119,6 @@ def soma():
     session['ncandidatos'] += 1
     return redirect("/atualizar_form_add_candidato")
 
-@app.route("/gerar_senha")
 def gerarSenha():
     global senha_correta
     senha = []
@@ -141,7 +131,9 @@ def gerarSenha():
         while contador < len(senha):
             senha_correta += str(senha[contador])
             contador += 1
-    return redirect("/criar_votacao", senha_correta)
+        print("SENHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        print(senha_correta)
+    return True
 
 @app.route("/pagina_votacao", methods=['POST'])
 def paginaVotacao():

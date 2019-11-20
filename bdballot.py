@@ -33,5 +33,8 @@ if __name__ == '__main__': #condição verdadeira para garantir que o código se
         os.remove(arq) #exclui arquivo
     db.connect() #conecta no bd
     db.create_tables([Usuario, Candidato, Votacao]) #cria tabelas com base nas classes criadas
-    usu = Usuario(nomeU='José', cpf='123', emailU='@gmail.com', senha='12345') #instancia objeto
-    usu.save() #salva informações
+    usu = Usuario.create(nomeU='José', cpf='123', emailU='@gmail.com', senha='12345') #instancia objeto
+    voto1 = Votacao.create(titulo="Oi", criador=usu.id, estiloVotacao="privada", codigo_votacao="1234")
+    vot = Votacao.select()
+    for u in vot:
+        print(u.titulo, u.criador, u.criador.nomeU)
