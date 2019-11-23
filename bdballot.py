@@ -35,6 +35,6 @@ if __name__ == '__main__': #condição verdadeira para garantir que o código se
     db.create_tables([Usuario, Candidato, Votacao]) #cria tabelas com base nas classes criadas
     usu = Usuario.create(nomeU='José', cpf='123', emailU='@gmail.com', senha='12345') #instancia objeto
     voto1 = Votacao.create(titulo="Oi", criador=usu.id, estiloVotacao="privada", codigo_votacao="1234")
-    vot = Votacao.select()
-    for u in vot:
-        print(u.titulo, u.criador, u.criador.nomeU)
+    vot = Votacao.select() #seleciona todos os valores cadastrados na classe 
+    for u in vot:#para cada item da lista vot
+        print(u.titulo, u.criador, u.criador.nomeU)#mostra os atributos do item
