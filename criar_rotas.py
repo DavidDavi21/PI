@@ -9,6 +9,7 @@ sessao = False #define a sessao como falsa
 senha_correta = "" #define a senha
 lista_votacoes = Votacao.select() #define a lista de votacoes como tudo que estiver cadastrado na classe Votacao
 lista_candidatos = Candidato.select()#define a lista de candidatos como tudo que estiver cadastrado na classe Candidato
+vot = ""
 
 @app.route("/")#define a rota
 def home():#abre função conectada à rota
@@ -33,7 +34,8 @@ def atualizar_form_criar_votacao():#abre função conectada à rota
 
 @app.route("/criar_votacao", methods=['post'])#define a rota com metodo post
 def criar_votacao():#abre função conectada à rota
-    global senha_correta #define como variavel global 
+    global senha_correta #define como variavel global
+    global vot
     lista_usuarios = Usuario.select() #define lista_usuarios como tido que estiver cadastrado na classe Usuario
     titulo = request.form['titulo'] #pega o valor do form e joga na variavel
     estiloVotacao = request.form['vote'] #pega o valor do form e joga na variavel
@@ -44,7 +46,7 @@ def criar_votacao():#abre função conectada à rota
     for i in lista_usuarios:# pra cada item na lista
         if session['usuario'][0] == i.nomeU:#se a primeira posição da sessão for igual ao nome
             idCriador = i.id #define o id do criador igual ao id do usuario
-            Votacao.create(titulo=titulo, criador=idCriador, estiloVotacao=estiloVotacao, codigo_votacao=senha_correta)#cria instancia da classe Votacao
+            vot = Votacao.create(titulo=titulo, criador=idCriador, estiloVotacao=estiloVotacao, codigo_votacao=senha_correta)#cria instancia da classe Votacao
     return render_template("eleicao.html", titulo=titulo)#retorna a pagina entre parenteses acompanhada do titulo da votacao
 
 @app.route("/resetar")#define a rota
@@ -54,7 +56,12 @@ def resetar():#abre função conectada à rota
 
 @app.route("/salvar_candidatos")#define a rota
 def salvarCandidato():#abre função conectada à rota
-    pass #função sem codigo
+    global vot
+    for t in range(session['ncandidatos']):
+        nome = request.args['cand'+str(t+1)]
+        desc = request.args['descricao'+str(t+1)]
+        c = Candidato.create(nomeC=nome, descricao=desc, votacao=vot, quantidade_votos=0)   
+    return 'Deu porra'
 
 @app.route("/votar")#define a rota
 def votar():#abre função conectada à rota
@@ -76,7 +83,7 @@ def cadastrar():#abre função conectada à rota
     cpf = request.form['cpf']#pega o valor do form e joga na variavel
     emailU = request.form['email']#pega o valor do form e joga na variavel
     senha = request.form['senha']#pega o valor do form e joga na variavel
-    Usuario.create(nomeU=nomeU, cpf=cpf, emailU=emailU, senha=senha))#cria instancia da classe Usuario
+    Usuario.create(nomeU=nomeU, cpf=cpf, emailU=emailU, senha=senha)#cria instancia da classe Usuario
     #Colocar alert informando que foi bem sucedido! E o verificador se os campos estiverem preenchidos!
     return redirect("/form_login")#redireciona para a rota entre parenteses
 

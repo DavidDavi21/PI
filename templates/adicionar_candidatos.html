@@ -54,7 +54,7 @@
         <br>
         <form action="/salvar_candidatos"> <!-- início do formulário, que irá direcionar as informações obtidas para a rota salvar_candidatos-->
             <label for="candum">Candidato {{i + 1}}:</label> <!-- linha com o número do candidato, resultante do laço de repetição -->
-            <input type="text" id="candum" name="cand{{i+1}}" placeholder="Batata frita" required> <!-- caixa de texto -->
+            <input type="text" id="candum" name="cand{{i+1}}" value="cand{{i+1}}" placeholder="Batata frita" required> <!-- caixa de texto -->
 	        <br>
             <br>
             <label for="candum"> Foto Candidato {{i + 1}}:</label>
